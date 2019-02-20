@@ -1,1 +1,8 @@
-dsds
+1、reduce()
+reduce()方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
+示例：
+const arr1 = [1, 2, 3, 4];
+const reducer = (accumulator, currentValue) => accumulator + currentValue
+// 1+2+3+4 
+console.log(arr1.reduce(reducer))
+// 15
