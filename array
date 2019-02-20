@@ -13,3 +13,9 @@ Accumulator(acc) (累计器)
 Current Value(cur) (当前值)
 Current Index(idx) (当前索引)
 Source Array(src) (源数组)
+
+2、flat()(试验中的功能)
+flat()方法会递归到指定深度将所有子数组连接，并返回一个新数组。
+var newArray = arr.flat(depth)
+depth 可选
+ 指定嵌套数组中的结构深度，默认值为1
