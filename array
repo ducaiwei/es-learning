@@ -6,6 +6,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue
 // 1+2+3+4 
 console.log(arr1.reduce(reducer))
 // 10
+// 5+1+2+3+4
 console.log(arr1.reduce(reducer, 5))
 // 15
 reducer函数一共接收4个参数
