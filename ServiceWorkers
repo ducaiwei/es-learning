@@ -1,1 +1,16 @@
-sss
+Service Worker生命周期
+Service Worker的使用过程很简单，我们基本上需要做的就是利用这个API做好站点的缓存策略。在页面脚本中注册Service Worker文件所在的url。Worker就开始激活了，
+激活后的Service Worker可以监听当前域下的功能性事件，比如资源请求(fetch)、推送通知(push)、后台同步(sync)。在这一系列的流程中，从Service Worker的注册
+到小时，经历了生命周期中不同的状态。
+
+通常使用Service Worker基本上就是一下几个步骤：
+1、首先我们需要在页面的JavaScript主线程中使用serviceWorkerContainer.register()来注册Service Worker,在注册的过程中，浏览器会在
+后台启动尝试Service Worker的安装步骤
+2、如果注册成功，Service Worker在ServiceWorkerGlobalScope环境中运行；这是一个特殊的worker context，与主脚本的运行线程相独立，
+同时也没有访问DOM的能力。
+3、后台开始安装步骤，通常安装的过程中需要缓存一些静态资源。如果所有的资源成功缓存则安装成功，如果有任何静态资源缓存失败则安装失败，
+在这里失败不要紧，会自动继续安装指导成功，如果安装不成功无法进行下一步——激活Service Worker。
+4、开始激活Service Worker，必须要在Service安装成功后才能开始激活，当Service Worker安装完成后，会接收到一个激活事件。激活事件的处理函数中，
+主要操作是清理旧版本的Service Worker脚本中使用资源。
+5、激活成功后Service Worker可以控制页面了，但是只针对在成功注册了Service Worker后打开的页面。也就是说，页面打开时没有Service Worker，
+接下来页面的生命周期不受Service Worker控制。
